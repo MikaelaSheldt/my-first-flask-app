@@ -1,0 +1,9 @@
+<!-- super() inherits the previous value or parent template values-->
+
+{% extends "base.html" %}
+
+{% block title %} Entry Point | {{ super() }} {% endblock %}
+
+{% block content %}
+<h1> Welcome to my first Flask App!</h1>
+{% endblock %}

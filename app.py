@@ -8,8 +8,8 @@ from flask import render_template
 # always refer to yourself
 app = Flask(__name__)
 
-# ROUTES that render views when requested
-@app.route('/')
+# ROUTES that render views when requested  - below are examples of how to do it.
+@app.route('/example')
 def query_string_view(name='Mikaela'):
     """
     Views are functions that return HTTP responses. repsonse must be a string
@@ -18,16 +18,16 @@ def query_string_view(name='Mikaela'):
     name = request.args.get('name', name)
     return "Howdy Ya'll. {} is AwEsOmE!.".format(name)
 
-@app.route('/<name>')
+@app.route('/example/test/<name>')
 def clean_view(name):
     return "Actually, {} is AwEsOmE!.".format(name)
 
-@app.route('/<int:number>')
+@app.route('/example/<int:number>')
 def int_input(number):
     """specifiy a type in the url"""
     return "I am {}, and I have always been an integer. Two of me makes {}.".format(number, number*2)
 
-@app.route('/convert/<number>')
+@app.route('/example/convert/<number>')
 def int_maker(number):
     """
     Remember that input is always a string. And you must always return a string!
@@ -35,7 +35,7 @@ def int_maker(number):
     integer = int(number)
     return "My string is {}, but if you change me to an int, you can add one and I become {}.".format(number, integer+1)
 
-@app.route('/oldschool/html')
+@app.route('/example/oldschool/html')
 def render_html():
     return """
     <!doctype html>
@@ -49,10 +49,18 @@ def render_html():
     </html>
     """
 
-@app.route('/add/<int:num1>/<int:num2>')
+@app.route('/example/add/<int:num1>/<int:num2>')
 def template_renderer(num1, num2):
     context = {'num1': num1, 'num2': num2}
-    return render_template("add.html", **context)
+    return render_template("example_add.html", **context)
+
+
+# ROUTES and views that take advantage of template inheritance as provided by Jinga
+
+@app.route('/')
+def jinja_render():
+    return render_template("index.html")
+
 
 
 # debug=True -> any time I make changes we want flask ot auto-restart

@@ -1,0 +1,14 @@
+<!-- This is a layout of sorts. the hard coded html never changes, but the curly brackets represent mutable blocks of html. This is made possible by the Jinji rendering engine-->
+
+<!doctype html>
+
+<html>
+<head>
+  <title>{% block title %}Default Title{% endblock %}</title>
+  <link rel="stylesheet" href="/static/styles.css"
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <p>rendered by Jinja</p>
+</body>
+</html>
