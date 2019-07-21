@@ -9,13 +9,18 @@ app = Flask(__name__)
 
 # ROUTES that render views when requested
 @app.route('/')
-def index(name='Mikaela'):
+def query_string_view(name='Mikaela'):
     """
     Views are functions that return HTTP responses. repsonse must be a string
     Using a query string in the URL puts a key in the args dictionary, ex: ../?name="Jimmy"
     """
     name = request.args.get('name', name)
     return "Howdy Ya'll. {} is AwEsOmE!.".format(name)
+
+@app.route('/<name>')
+def clean_view(name):
+    return "Actually, {} is AwEsOmE!.".format(name)
+
 
 # debug=True -> any time I make changes we want flask ot auto-restart
 # host='0.0.0.0' -> listen on all addresses that can get here
