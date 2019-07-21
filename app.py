@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 # request is a global object available everywhere!
 # request has an args property that is a dictionary so we access it with args.get(<key_name>)
+from flask import render_template
 
 
 # always refer to yourself
@@ -47,6 +48,12 @@ def render_html():
     </body>
     </html>
     """
+
+@app.route('/add/<int:num1>/<int:num2>')
+def template_renderer(num1, num2):
+    context = {'num1': num1, 'num2': num2}
+    return render_template("add.html", **context)
+
 
 # debug=True -> any time I make changes we want flask ot auto-restart
 # host='0.0.0.0' -> listen on all addresses that can get here
