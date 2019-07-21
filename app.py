@@ -3,7 +3,7 @@ from flask import Flask
 # always refer to yourself
 app = Flask(__name__)
 
-# ROUTES
+# ROUTES yay
 @app.route('/')
 def index():
     return "Howdy Ya'll"
