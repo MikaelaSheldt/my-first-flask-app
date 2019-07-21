@@ -21,8 +21,15 @@ def query_string_view(name='Mikaela'):
 def clean_view(name):
     return "Actually, {} is AwEsOmE!.".format(name)
 
+@app.route('/<int:number>')
+def int_input(number):
+    """specifiy a type in the url"""
+    return "I am {}, and I have always been an integer. Two of me makes {}.".format(number, number*2)
 @app.route('/convert/<number>')
 def int_maker(number):
+    """
+    Remember that input is always a string.
+    """
     integer = int(number)
     return "My string is {}, but if you change me to an int, you can add one and I become {}.".format(number, integer+1)
 
