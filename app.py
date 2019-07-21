@@ -21,6 +21,11 @@ def query_string_view(name='Mikaela'):
 def clean_view(name):
     return "Actually, {} is AwEsOmE!.".format(name)
 
+@app.route('/convert/<number>')
+def int_maker(number):
+    integer = int(number)
+    return "My string is {}, but if you change me to an int, you can add one and I become {}.".format(number, integer+1)
+
 
 # debug=True -> any time I make changes we want flask ot auto-restart
 # host='0.0.0.0' -> listen on all addresses that can get here
